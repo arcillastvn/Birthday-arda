@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Arda ♡</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@500;600&display=swap');
+
+*{box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+
+body{
+    margin:0;
+    min-height:100vh;
+    font-family:"DM Sans",sans-serif;
+    color:#31566f;
+    background:#dff3ff;
+    overflow-x:hidden;
+}
+
+.background{
+    position:fixed;
+    inset:0;
+    z-index:-2;
+    background:
+        radial-gradient(circle at 15% 15%,#fff 0%,transparent 25%),
+        radial-gradient(circle at 90% 80%,#b9e6ff 0%,transparent 28%),
+        linear-gradient(145deg,#edfaff,#c9ebff);
+}
+
+.sparkles{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-1;
+}
+
+.sparkles span{
+    position:absolute;
+    color:white;
+    opacity:.75;
+    animation:floating 5s ease-in-out infinite;
+}
+
+@keyframes floating{
+    50%{
+        transform:translateY(-15px) rotate(8deg);
+        opacity:1;
+    }
+}
+
+.container{
+    width:min(92%,720px);
+    margin:auto;
+    padding:25px 0 50px;
+}
+
+.card{
+    background:rgba(255,255,255,.78);
+    border:1px solid rgba(255,255,255,.95);
+    border-radius:30px;
+    padding:30px;
+    margin:20px 0;
+    box-shadow:0 18px 55px rgba(76,139,174,.18);
+    backdrop-filter:blur(14px);
+}
+
+.screen{
+    min-height:85vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+}
+
+.hidden{
+    display:none!important;
+}
+
+.kicker{
+    letter-spacing:3px;
+    text-transform:uppercase;
+    font-size:12px;
+    color:#6e9ab6;
+    font-weight:700;
+}
+
+h1,h2{
+    font-family:"Playfair Display",serif;
+    color:#31566f;
+}
+
+h1{
+    font-size:clamp(42px,11vw,76px);
+    line-height:.95;
+    margin:10px 0 18px;
+}
+
+h2{
+    font-size:34px;
+    margin:10px 0 15px;
+}
+
+p{
+    line-height:1.7;
+}
+
+.sub{
+    color:#6b899c;
+}
+
+button{
+    border:none;
+    border-radius:999px;
+    padding:13px 22px;
+    background:#8fd1f4;
+    color:#17445f;
+    font-weight:700;
+    cursor:pointer;
+    box-shadow:0 8px 20px rgba(65,146,190,.18);
+    transition:.2s;
+    margin:5px;
+}
+
+button:hover{
+    transform:translateY(-2px);
+}
+
+button.secondary{
+    background:white;
+}
+
+/* PASSWORD */
+
+.password-box{
+    width:min(100%,520px);
+}
+
+.lock{
+    font-size:58px;
+}
+
+input{
+    width:100%;
+    border:1px solid #c5e7f7;
+    background:white;
+    padding:15px;
+    border-radius:16px;
+    outline:none;
+    text-align:center;
+    font-size:20px;
+    color:#31566f;
+    letter-spacing:7px;
+    margin:12px 0;
+}
+
+.error{
+    color:#c46d8d;
+    font-size:13px;
+    min-height:20px;
+}
+
+/* ENVELOPE */
+
+.envelope-wrapper{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:300px;
+    perspective:1000px;
+}
+
+.envelope{
+    position:relative;
+    width:280px;
+    height:180px;
+    cursor:pointer;
+    transition:transform .3s ease;
+}
+
+.envelope:hover{
+    transform:translateY(-6px) rotate(-1deg);
+}
+
+.envelope-body{
+    position:absolute;
+    inset:0;
+    background:#b9e5fa;
+    border-radius:8px;
+    box-shadow:0 15px 30px rgba(75,130,165,.2);
+    overflow:hidden;
+}
+
+.envelope-body:before,
+.envelope-body:after{
+    content:"";
+    position:absolute;
+    bottom:0;
+    width:0;
+    height:0;
+    border-style:solid;
+    z-index:2;
+}
+
+.envelope-body:before{
+    left:0;
+    border-width:0 140px 95px 0;
+    border-color:transparent #a6d9f2 transparent transparent;
+}
+
+.envelope-body:after{
+    right:0;
+    border-width:95px 140px 0 0;
+    border-color:#a6d9f2 transparent transparent transparent;
+}
+
+.flap{
+    position:absolute;
+    top:0;
+    left:0;
+    width:0;
+    height:0;
+    border-left:140px solid transparent;
+    border-right:140px solid transparent;
+    border-top:100px solid #ccecff;
+    transform-origin:top;
+    transition:transform .8s cubic-bezier(.4,1.5,.5,1);
+    z-index:5;
+}
+
+.letter-paper{
+    position:absolute;
+    left:15px;
+    right:15px;
+    bottom:8px;
+    height:155px;
+    background:#fffdfb;
+    border-radius:8px;
+    padding:20px;
+    box-shadow:0 8px 20px rgba(70,110,130,.15);
+    transition:transform 1s cubic-bezier(.4,1.5,.5,1);
+    z-index:3;
+    text-align:center;
+}
+
+.letter-paper p{
+    margin:8px 0;
+    font-family:"Playfair Display",serif;
+}
+
+.letter-heart{
+    position:absolute;
+    left:50%;
+    top:78px;
+    transform:translate(-50%,-50%);
+    z-index:7;
+    font-size:35px;
+    transition:opacity .4s ease,transform .4s ease;
+}
+
+.envelope.open .flap{
+    transform:rotateX(180deg);
+}
+
+.envelope.open .letter-paper{
+    transform:translateY(-115px);
+}
+
+.envelope.open .letter-heart{
+    opacity:0;
+    transform:translate(-50%,-50%) scale(.5);
+}
+
+.click-hint{
+    margin-top:15px;
+    color:#7097ad;
+    font-size:13px;
+    animation:hint 1.5s ease-in-out infinite;
+}
+
+@keyframes hint{
+    50%{
+        transform:translateY(-4px);
+        opacity:.6;
+    }
+}
+
+.read-button{
+    opacity:0;
+    transform:translateY(10px);
+    pointer-events:none;
+    transition:.5s ease;
+}
+
+.read-button.show{
+    opacity:1;
+    transform:translateY(0);
+    pointer-events:auto;
+}
+
+/* LETTER */
+
+.letter{
+    background:#fffdfb;
+    border-radius:20px;
+    padding:25px;
+    text-align:left;
+    box-shadow:inset 0 0 0 1px #eef2f4;
+}
+
+/* PHOTOS */
+
+.photos{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+}
+
+.photo{
+    aspect-ratio:1;
+    border-radius:20px;
+    background:linear-gradient(135deg,#c4eaff,#eefaff);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#7aa2b8;
+    overflow:hidden;
+    font-size:13px;
+    text-align:center;
+    padding:10px;
+}
+
+.photo:first-child{
+    grid-column:span 2;
+    aspect-ratio:16/9;
+}
+
+.photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* CAKE */
+
+.choice{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+.choice button{
+    background:white;
+}
+
+#toast{
+    min-height:30px;
+    color:#4c7890;
+    font-weight:700;
+}
+
+/* GIFT */
+
+.gift{
+    font-size:95px;
+    cursor:pointer;
+    display:inline-block;
+    animation:giftBob 1.6s ease-in-out infinite;
+}
+
+@keyframes giftBob{
+    50%{
+        transform:translateY(-8px) rotate(2deg);
+    }
+}
+
+/* MUSIC */
+
+.music{
+    position:fixed;
+    right:15px;
+    top:15px;
+    z-index:10;
+}
+
+/* CONFETTI */
+
+.confetti{
+    position:fixed;
+    top:-20px;
+    width:10px;
+    height:16px;
+    z-index:20;
+    animation:fall 3s linear forwards;
+}
+
+@keyframes fall{
+    to{
+        transform:translateY(110vh) rotate(720deg);
+        opacity:0;
+    }
+}
+
+footer{
+    text-align:center;
+    color:#7195a9;
+    font-size:12px;
+    margin-top:25px;
+}
+
+@media(max-width:500px){
+
+    .card{
+        padding:23px;
+        border-radius:25px;
+    }
+
+    h1{
+        font-size:48px;
+    }
+
+    h2{
+        font-size:30px;
+    }
+
+    .letter{
+        padding:20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="background"></div>
+<div class="sparkles" id="sparkles"></div>
+
+<button class="music secondary" onclick="toggleMusic()">
+    ♫ Music
+</button>
+
+<div class="container">
+
+<!-- PASSWORD -->
+
+<section id="passwordPage" class="screen">
+
+    <div class="card password-box">
+
+        <div class="lock">🔐</div>
+
+        <div class="kicker">
+            a tiny birthday surprise
+        </div>
+
+        <h1>
+            pssst, Arda...
+        </h1>
+
+        <p class="sub">
+            Katanya ada sesuatu di sini buat kamu 👀
+            <br>
+            Tapi harus tahu password-nya dulu.
+        </p>
+
+        <input
+            id="passwordInput"
+            type="password"
+            inputmode="numeric"
+            maxlength="4"
+            placeholder="• • • •"
+        >
+
+        <div class="error" id="errorMessage"></div>
+
+        <button onclick="unlock()">
+            Open the surprise ♡
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- MAIN -->
+
+<main id="mainContent" class="hidden">
+
+
+<!-- HERO -->
+
+<section class="card" style="text-align:center">
+
+    <div class="kicker">
+        for a birthday boy
+    </div>
+
+    <h1>
+        Happy Birthday,
+        <br>
+        Arda ♡
+    </h1>
+
+    <p class="sub">
+        WYATB!! 🎂✨
+        <br>
+        Semoga tahun ini banyak banget
+        hal baik yang datang ke kamu.
+    </p>
+
+    <button onclick="showSection('letter')">
+        💌 buka surat
+    </button>
+
+</section>
+
+
+<!-- LETTER -->
+
+<section id="letter" class="card">
+
+    <div class="kicker">
+        someone left you a letter ♡
+    </div>
+
+    <h2>
+        There's something for you...
+    </h2>
+
+    <div class="envelope-wrapper">
+
+        <div
+            class="envelope"
+            id="envelope"
+            onclick="openLetter()"
+        >
+
+            <div class="letter-paper">
+
+                <p>💌</p>
+
+                <p>
+                    A little letter
+                    <br>
+                    just for Arda ♡
+                </p>
+
+            </div>
+
+            <div class="envelope-body"></div>
+
+            <div class="flap"></div>
+
+            <div class="letter-heart">
+                💙
+            </div>
+
+        </div>
+
+    </div>
+
+    <div
+        class="click-hint"
+        id="clickHint"
+    >
+        tap the envelope ♡
+    </div>
+
+    <div style="text-align:center">
+
+        <button
+            id="readButton"
+            class="read-button"
+            onclick="readLetter()"
+        >
+            💌 read the letter
+        </button>
+
+    </div>
+
+
+    <!-- ACTUAL LETTER -->
+
+    <div
+        id="actualLetter"
+        class="letter hidden"
+        style="margin-top:30px"
+    >
+
+        <p>
+            <b>HAPPY BIRTHDAYYY 🥳🫶🏻</b>
+        </p>
+
+        <p>
+            Finally nambah umur lagi wkwkwk 😭☝🏻
+            WYATB!! Semoga di umur yang baru ini
+            makin banyak hal seru yang kejadian,
+            makin banyak rezeki, makin sehat,
+            dan pastinya makin bahagiaa.
+        </p>
+
+        <p>
+            Semoga semua yang lagi kamu usahain
+            bisa berjalan lancar. Kalau lagi banyak
+            tugas atau hidup mulai agak ngeselin,
+            semoga tetap kuat menghadapinya 😭🙏🏻
+        </p>
+
+        <p>
+            Pokoknya jangan lupa have fun,
+            makan yang enak, nikmatin hari ini,
+            <b>Today is YOUR day, so enjoy it fr 🫵😼</b>
+        </p>
+
+        <p>
+            Semoga wish kamu satu-satu terkabul,
+            dari yang receh sampai yang serius.
+            And hopefully this year treats you well 🫶🏻
+        </p>
+
+        <p>
+            Once again, HAPPY BIRTHDAYYY!! 🎉🎀
+            <br>
+            WYATB, Arda! Stay healthy
+            and stay silly wkwkwk 🩵
+        </p>
+
+        <p style="text-align:right">
+            — from your totally normal friend 😭☝🏻
+        </p>
+
+        <div style="text-align:center;margin-top:20px">
+
+            <button onclick="showSection('photos')">
+                next → 📸
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PHOTOS -->
+
+<section id="photos" class="card">
+
+    <div class="kicker">
+        little memories
+    </div>
+
+    <h2>
+        5 little moments ♡
+    </h2>
+
+    <p class="sub">
+        Some memories deserve their own little corner 🩵
+    </p>
+
+    <div class="photos">
+
+        <div class="photo">
+            📸 PHOTO 01
+        </div>
+
+        <div class="photo">
+            📸 PHOTO 02
+        </div>
+
+        <div class="photo">
+            📸 PHOTO 03
+        </div>
+
+        <div class="photo">
+            📸 PHOTO 04
+        </div>
+
+        <div class="photo">
+            📸 PHOTO 05
+        </div>
+
+    </div>
+
+    <div style="text-align:center;margin-top:20px">
+
+        <button onclick="showSection('cake')">
+            next → 🎂
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- CAKE -->
+
+<section id="cake" class="card" style="text-align:center">
+
+    <div class="kicker">
+        important question
+    </div>
+
+    <h2>
+        Choose your cake 🍰
+    </h2>
+
+    <p>
+        Birthday cake kamu hari ini yang mana?
+    </p>
+
+    <div class="choice">
+
+        <button onclick="chooseCake('🍓 Strawberry')">
+            🍓 Strawberry
+        </button>
+
+        <button onclick="chooseCake('🍫 Chocolate')">
+            🍫 Chocolate
+        </button>
+
+        <button onclick="chooseCake('🫐 Blueberry')">
+            🫐 Blueberry
+        </button>
+
+    </div>
+
+    <div id="toast"></div>
+
+    <button onclick="showSection('gift')">
+        lanjut → 🎁
+    </button>
+
+</section>
+
+
+<!-- GIFT -->
+
+<section id="gift" class="card" style="text-align:center">
+
+    <div class="kicker">
+        one last thing
+    </div>
+
+    <h2>
+        There's a gift for you...
+    </h2>
+
+    <p>
+        Jangan cuma dilihat.
+        <br>
+        <b>CLICK THE GIFT.</b> 😭☝🏻
+    </p>
+
+    <div
+        class="gift"
+        onclick="openGift()"
+        title="Click me!"
+    >
+        🎁
+    </div>
+
+    <div id="giftText"></div>
+
+</section>
+
+
+<!-- FINAL -->
+
+<section id="final" class="card hidden" style="text-align:center">
+
+    <div style="font-size:70px">
+        🎉🩵🎂
+    </div>
+
+    <div class="kicker">
+        that's it!
+    </div>
+
+    <h1>
+        WYATB, Arda!
+    </h1>
+
+    <p>
+        Semoga tahun ini jadi salah satu
+        chapter terbaik kamu.
+        <br><br>
+        Stay healthy, stay happy,
+        and stay silly 😭🩵
+    </p>
+
+    <button onclick="extraSurprise()">
+        ✨ ONE MORE SURPRISE
+    </button>
+
+    <p id="finalMessage" class="sub"></p>
+
+</section>
+
+
+<footer>
+    made with ♡, baby blue & a little bit of chaos
+</footer>
+
+</main>
+</div>
+
+
+<!-- MUSIC -->
+
+<audio id="music" loop preload="none"></audio>
+
+
+<script>
+
+/* PASSWORD */
+
+function unlock(){
+
+    const password =
+        document.getElementById("passwordInput").value;
+
+    const error =
+        document.getElementById("errorMessage");
+
+    if(password === "0209"){
+
+        document
+            .getElementById("passwordPage")
+            .classList.add("hidden");
+
+        document
+            .getElementById("mainContent")
+            .classList.remove("hidden");
+
+        confetti();
+
+    }else{
+
+        error.textContent =
+            "hmm... password-nya salah 😭 coba lagi!";
+
+    }
+
+}
+
+
+/* ENTER TO UNLOCK */
+
+document
+    .getElementById("passwordInput")
+    .addEventListener("keydown",function(event){
+
+        if(event.key === "Enter"){
+            unlock();
+        }
+
+    });
+
+
+/* NAVIGATION */
+
+function showSection(id){
+
+    const sections=[
+        "letter",
+        "photos",
+        "cake",
+        "gift"
+    ];
+
+    sections.forEach(function(section){
+
+        document
+            .getElementById(section)
+            .classList.add("hidden");
+
+    });
+
+    document
+        .getElementById(id)
+        .classList.remove("hidden");
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+/* OPEN LETTER */
+
+function openLetter(){
+
+    const envelope =
+        document.getElementById("envelope");
+
+    const hint =
+        document.getElementById("clickHint");
+
+    const button =
+        document.getElementById("readButton");
+
+    if(envelope.classList.contains("open")){
+        return;
+    }
+
+    envelope.classList.add("open");
+
+    hint.textContent =
+        "the letter is waiting for you... 💌";
+
+    setTimeout(function(){
+
+        button.classList.add("show");
+
+    },900);
+
+}
+
+
+/* READ LETTER */
+
+function readLetter(){
+
+    const letter =
+        document.getElementById("actualLetter");
+
+    letter.classList.remove("hidden");
+
+    letter.scrollIntoView({
+        behavior:"smooth",
+        block:"center"
+    });
+
+}
+
+
+/* CAKE */
+
+function chooseCake(cake){
+
+    document
+        .getElementById("toast")
+        .textContent =
+        cake +
+        " dipilih! good choice fr 😭🫶🏻";
+
+}
+
+
+/* GIFT */
+
+function openGift(){
+
+    document
+        .getElementById("giftText")
+        .innerHTML=`
+
+        <p style="font-size:20px">
+
+            🎁 Surpriseee!
+
+            <br><br>
+
+            Semoga semua hal baik
+            yang kamu doain
+            pelan-pelan datang
+            ke kamu.
+
+            <br><br>
+
+            You deserve good things,
+            bestie 🩵
+
+        </p>
+
+    `;
+
+    confetti();
+
+    setTimeout(function(){
+
+        document
+            .getElementById("final")
+            .classList.remove("hidden");
+
+        document
+            .getElementById("final")
+            .scrollIntoView({
+                behavior:"smooth"
+            });
+
+    },900);
+
+}
+
+
+/* FINAL SURPRISE */
+
+function extraSurprise(){
+
+    confetti();
+
+    document
+        .getElementById("finalMessage")
+        .textContent =
+        "Okay that's REALLY it 😭🩵 Happy birthday once again!!";
+
+}
+
+
+/* CONFETTI */
+
+function confetti(){
+
+    for(let i=0;i<90;i++){
+
+        const piece =
+            document.createElement("i");
+
+        piece.className="confetti";
+
+        piece.style.left =
+            Math.random()*100+"vw";
+
+        piece.style.animationDelay =
+            Math.random()*0.8+"s";
+
+        piece.style.transform =
+            "rotate("+
+            Math.random()*360+
+            "deg)";
+
+        document.body.appendChild(piece);
+
+        setTimeout(function(){
+
+            piece.remove();
+
+        },3500);
+
+    }
+
+}
+
+
+/* MUSIC */
+
+function toggleMusic(){
+
+    const music =
+        document.getElementById("music");
+
+    if(!music.src){
+
+        alert(
+            "Upload file musik yang kamu punya ke repository, lalu masukkan namanya di bagian audio HTML."
+        );
+
+        return;
+
+    }
+
+    if(music.paused){
+        music.play();
+    }else{
+        music.pause();
+    }
+
+}
+
+
+/* SPARKLES */
+
+const sparkleContainer =
+    document.getElementById("sparkles");
+
+for(let i=0;i<22;i++){
+
+    const sparkle =
+        document.createElement("span");
+
+    const symbols=[
+        "✦",
+        "⋆",
+        "♡",
+        "˚",
+        "✧"
+    ];
+
+    sparkle.textContent =
+        symbols[i%symbols.length];
+
+    sparkle.style.left =
+        Math.random()*100+"%";
+
+    sparkle.style.top =
+        Math.random()*100+"%";
+
+    sparkle.style.fontSize =
+        (10+Math.random()*14)+"px";
+
+    sparkle.style.animationDelay =
+        Math.random()*5+"s";
+
+    sparkleContainer.appendChild(sparkle);
+
+}
+
+</script>
+
+</body>
+</html>
